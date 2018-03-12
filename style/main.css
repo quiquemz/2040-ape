@@ -428,39 +428,39 @@ hr {
 }
 
 .tile.tile-2 .tile-inner {
-    background-color: #eee4da;
+    background-color: #FFFD98;
     background-image: url("../images/tile-2.png");
     background-size: contain;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
 }
 
 .tile.tile-4 .tile-inner {
-    background-color: #ede0c8;
+    background-color: #FFFD98;
     background-image: url("../images/tile-4.png");
     background-size: contain;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
 }
 
 .tile.tile-8 .tile-inner {
-    background-color: #f2b179;
+    background-color: #8FFFCD;
     background-image: url("../images/tile-8.png");
     background-size: contain;
 }
 
 .tile.tile-16 .tile-inner {
-    background-color: #f59563;
+    background-color: #65E8AE;
     background-image: url("../images/tile-16.png");
     background-size: contain;
 }
 
 .tile.tile-32 .tile-inner {
-    background-color: #f67c5f;
+    background-color: #7DB7C4;
     background-image: url("../images/tile-32.png");
     background-size: contain;
 }
 
 .tile.tile-64 .tile-inner {
-    background-color: #f65e3b;
+    background-color: #5EA3B2;
     background-image: url("../images/tile-64.png");
     background-size: contain;
 }
@@ -473,7 +473,7 @@ hr {
 }
 
 .tile.tile-256 .tile-inner {
-    background-color: #edcc61;
+    background-color: #F9627D;
     background-image: url("../images/tile-256.png");
     background-size: contain;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
