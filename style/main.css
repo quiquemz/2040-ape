@@ -654,6 +654,10 @@ hr {
     animation-fill-mode: backwards;
 }
 
+.above-game {
+    margin-top: 10px;
+}
+
 .above-game:after {
     content: "";
     display: block;
@@ -678,6 +682,19 @@ hr {
     display: block;
     text-align: center;
     float: right;
+}
+
+.state-container {
+    margin-top: 10px;
+    border-style: solid;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.state-container:after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 .game-explanation {
@@ -705,7 +722,7 @@ hr {
         padding: 15px 10px;
         min-width: 40px;
     }
-    .heading {
+    .above-game {
         margin-bottom: 10px;
     }
     .game-intro {

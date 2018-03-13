@@ -3,8 +3,12 @@ function HTMLActuator() {
     this.scoreContainer = document.querySelector(".score-container");
     this.bestContainer = document.querySelector(".best-container");
     this.messageContainer = document.querySelector(".game-message");
+    this.stateContainer = document.querySelector(".state-container");
 
     this.score = 0;
+    this.state = 0;
+
+    this.STATES_NUM = 3
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -128,6 +132,34 @@ HTMLActuator.prototype.updateScore = function (score) {
 
         this.scoreContainer.appendChild(addition);
     }
+};
+
+HTMLActuator.prototype.updateState = function () {
+    this.clearContainer(this.stateContainer);
+
+    switch (this.state) {
+    case 0:
+        // Choose MODE
+        console.log(this.state == 0);
+        this.stateContainer.textContent = 'Choose MODE';
+        break;
+    case 1:
+        // Choose DIRECTION
+        console.log(this.state == 1);
+        this.stateContainer.textContent = 'Choose DIRECTION';
+        break;
+    case 2:
+        // Run ACTION
+        console.log(this.state == 2);
+        this.stateContainer.textContent = 'Run ACTION';
+        break;
+    default:
+        console.error('STATE OUT OF BOUNDS: ' + this.state);
+        break;
+    }
+
+    this.state = (this.state + 1) % this.STATES_NUM
+
 };
 
 HTMLActuator.prototype.updateBestScore = function (bestScore) {
