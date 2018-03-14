@@ -2,8 +2,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    background: #faf8ef;
-    color: #776e65;
+    background: #003554;
+    color: #fff;
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     font-size: 18px;
 }
@@ -67,7 +67,7 @@ h1.title {
 .score-container, .best-container {
     position: relative;
     display: inline-block;
-    background: #bbada0;
+    background: #006494;
     padding: 15px 25px;
     font-size: 25px;
     height: 25px;
@@ -123,7 +123,7 @@ p {
 }
 
 a {
-    color: #776e65;
+    color: #00A6FB;
     font-weight: bold;
     text-decoration: underline;
     cursor: pointer;
@@ -184,7 +184,7 @@ hr {
     -ms-user-select: none;
     -ms-touch-action: none;
     touch-action: none;
-    background: #bbada0;
+    background: #FFF;
     border-radius: 6px;
     width: 500px;
     height: 500px;
@@ -278,7 +278,7 @@ hr {
     margin-right: 15px;
     float: left;
     border-radius: 3px;
-    background: rgba(238, 228, 218, 0.35);
+    background: rgba(218, 218, 218, 0.45);
 }
 
 .grid-cell:last-child {
@@ -428,33 +428,33 @@ hr {
 }
 
 .tile.tile-2 .tile-inner {
-    background-color: #FFFD98;
+    background-color: #FCFFCC;
     background-image: url("../images/tile-2.png");
     background-size: contain;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
 }
 
 .tile.tile-4 .tile-inner {
-    background-color: #FFFD98;
+    background-color: #F4EEB7;
     background-image: url("../images/tile-4.png");
     background-size: contain;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
 }
 
 .tile.tile-8 .tile-inner {
-    background-color: #8FFFCD;
+    background-color: #B2FFD1;
     background-image: url("../images/tile-8.png");
     background-size: contain;
 }
 
 .tile.tile-16 .tile-inner {
-    background-color: #65E8AE;
+    background-color: #A0F7B4;
     background-image: url("../images/tile-16.png");
     background-size: contain;
 }
 
 .tile.tile-32 .tile-inner {
-    background-color: #7DB7C4;
+    background-color: #99D6FF;
     background-image: url("../images/tile-32.png");
     background-size: contain;
 }
@@ -672,11 +672,11 @@ hr {
 
 .restart-button {
     display: inline-block;
-    background: #8f7a66;
+    background: #006494;
     border-radius: 3px;
     padding: 0 20px;
     text-decoration: none;
-    color: #f9f6f2;
+    color: white;
     height: 40px;
     line-height: 42px;
     display: block;
@@ -686,9 +686,10 @@ hr {
 
 .state-container {
     margin-top: 10px;
-    border-style: solid;
-    padding: 10px;
+    border-radius: 5px;
+    padding: 10px 14px;
     font-size: 14px;
+    background: #006494;
 }
 
 .state-container:after {
@@ -831,7 +832,7 @@ hr {
         margin-right: 10px;
         float: left;
         border-radius: 3px;
-        background: rgba(238, 228, 218, 0.35);
+        background: rgba(188, 188, 200, 0.45);
     }
     .grid-cell:last-child {
         margin-right: 0;
