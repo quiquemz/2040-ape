@@ -173,7 +173,7 @@ hr {
 }
 
 .game-container {
-    margin-top: 40px;
+    margin-top: 20px;
     position: relative;
     padding: 15px;
     cursor: default;
@@ -184,7 +184,7 @@ hr {
     -ms-user-select: none;
     -ms-touch-action: none;
     touch-action: none;
-    background: #FFF;
+    background: #006494;
     border-radius: 6px;
     width: 500px;
     height: 500px;
@@ -686,16 +686,31 @@ hr {
 
 .state-container {
     margin-top: 10px;
-    border-radius: 5px;
-    padding: 10px 14px;
-    font-size: 14px;
-    background: #006494;
+    display: flex;
 }
 
 .state-container:after {
     content: "";
     display: block;
     clear: both;
+}
+
+.current-state {
+    background: #006494;
+    border-radius: 3px;
+    padding: 8px 12px;
+    text-align: center;
+    width: 200px;
+    margin-right: 3px;
+}
+
+.state-instructions {
+    background: #006494;
+    border-radius: 3px;
+    padding: 8px 12px;
+    text-align: center;
+    width: 100%;
+    margin-left: 2px;
 }
 
 .game-explanation {
@@ -740,7 +755,7 @@ hr {
         margin-top: 2px;
     }
     .game-container {
-        margin-top: 17px;
+        margin-top: 20px;
         position: relative;
         padding: 10px;
         cursor: default;
@@ -832,7 +847,7 @@ hr {
         margin-right: 10px;
         float: left;
         border-radius: 3px;
-        background: rgba(188, 188, 200, 0.45);
+        background: rgba(255, 255, 255, 0.25);
     }
     .grid-cell:last-child {
         margin-right: 0;

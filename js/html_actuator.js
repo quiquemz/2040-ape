@@ -3,7 +3,8 @@ function HTMLActuator() {
     this.scoreContainer = document.querySelector(".score-container");
     this.bestContainer = document.querySelector(".best-container");
     this.messageContainer = document.querySelector(".game-message");
-    this.stateContainer = document.querySelector(".state-container");
+    this.currentStateMsg = document.querySelector(".current-state > span");
+    this.stateInstructionsContainer = document.querySelector(".state-instructions");
 
     this.score = 0;
     this.state = 0;
@@ -135,23 +136,72 @@ HTMLActuator.prototype.updateScore = function (score) {
 };
 
 HTMLActuator.prototype.updateState = function () {
-    this.clearContainer(this.stateContainer);
+    this.clearContainer(this.stateInstructionsContainer);
 
     switch (this.state) {
     case 0:
         // Choose MODE
-        console.log(this.state == 0);
-        this.stateContainer.textContent = 'Choose MODE';
+        this.currentStateMsg.textContent = 'Choose MODE';
+
+        // Instructions
+        var title = document.createElement('strong');
+        title.textContent = 'Instructions'
+
+        var ins1 = document.createElement('span');
+        ins1.textContent = '1) Meditate: UP_DOWN mode';
+
+        var ins2 = document.createElement('span');
+        ins2.textContent = '2) Attention: LEFT_RIGHT mode';
+
+        var br1 = document.createElement('br');
+        var br2 = document.createElement('br');
+
+        this.stateInstructionsContainer.appendChild(title);
+        this.stateInstructionsContainer.appendChild(br1);
+        this.stateInstructionsContainer.appendChild(ins1);
+        this.stateInstructionsContainer.appendChild(br2);
+        this.stateInstructionsContainer.appendChild(ins2);
         break;
     case 1:
         // Choose DIRECTION
-        console.log(this.state == 1);
-        this.stateContainer.textContent = 'Choose DIRECTION';
+        this.currentStateMsg.textContent = 'DIRECTION';
+
+        // Instructions
+        var title = document.createElement('strong');
+        title.textContent = 'Instructions'
+
+        var ins1 = document.createElement('span');
+        ins1.textContent = '1) Meditate: UP or RIGHT ';
+
+        var ins2 = document.createElement('span');
+        ins2.textContent = '2) Attention: LEFT or DOWN';
+
+        var br1 = document.createElement('br');
+        var br2 = document.createElement('br');
+
+        this.stateInstructionsContainer.appendChild(title);
+        this.stateInstructionsContainer.appendChild(br1);
+        this.stateInstructionsContainer.appendChild(ins1);
+        this.stateInstructionsContainer.appendChild(br2);
+        this.stateInstructionsContainer.appendChild(ins2);
+        break;
         break;
     case 2:
         // Run ACTION
-        console.log(this.state == 2);
-        this.stateContainer.textContent = 'Run ACTION';
+        this.currentStateMsg.textContent = 'Run ACTION';
+
+        // Instructions
+        var title = document.createElement('strong');
+        title.textContent = 'Instructions'
+
+        var ins1 = document.createElement('span');
+        ins1.textContent = 'Meditate: Run ACTION ';
+
+        var br1 = document.createElement('br');
+
+        this.stateInstructionsContainer.appendChild(title);
+        this.stateInstructionsContainer.appendChild(br1);
+        this.stateInstructionsContainer.appendChild(ins1);
         break;
     default:
         console.error('STATE OUT OF BOUNDS: ' + this.state);
