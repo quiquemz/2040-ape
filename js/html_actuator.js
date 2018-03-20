@@ -71,7 +71,10 @@ HTMLActuator.prototype.addTile = function (tile) {
 
     inner.classList.add("tile-inner");
     // TODO If digit in tile want to be shown
-    // inner.textContent = tile.value;
+
+    if (tile.value > 2048) {
+        inner.textContent = tile.value;
+    }
 
     if (tile.previousPosition) {
         // Make sure that the tile gets rendered in the previous position first
