@@ -14,11 +14,11 @@ The project was created for our Brain and Computer Interface class at UCSD. The 
 
 2. Choose MODE
 
-      (...)
+( . . . )
 
-The code for the NeuroSky headset is on a separate repository and it is based on C.
+[NeuroSky headset code] (https://github.com/quiquemz/2040-ape/tree/master/Stream%20SDK%20for%20PC) under StreamSDKforPC
 
-[Original code](https://github.com/gabrielecirulli/2048) (github.com)
+[Original 2048 code](https://github.com/gabrielecirulli/2048) 
 
 Use governed by the MIT License.
 
