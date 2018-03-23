@@ -139,14 +139,43 @@ HTMLActuator.prototype.updateScore = function (score) {
 };
 
 HTMLActuator.prototype.updateState = function () {
+    this.clearContainer(this.stateInstructionsContainer);
     switch (this.state) {
     case 0:
         // Choose MODE
         this.currentStateMsg.textContent = 'HORIZONTAL';
+
+        // Instructions
+        var title = document.createElement('strong');
+        title.textContent = 'Instructions'
+
+        var ins1 = document.createElement('span');
+        ins1.textContent = 'Meditation (←) • Attention (→)'
+
+        var br1 = document.createElement('br');
+
+        this.stateInstructionsContainer.appendChild(title);
+        this.stateInstructionsContainer.appendChild(br1);
+        this.stateInstructionsContainer.appendChild(ins1);
+
         break;
     case 1:
         // Choose DIRECTION
         this.currentStateMsg.textContent = 'VERTICAL';
+
+        // Instructions
+        var title = document.createElement('strong');
+        title.textContent = 'Instructions'
+
+        var ins1 = document.createElement('span');
+        ins1.textContent = 'Meditation (↑) • Attention (↓)'
+
+        var br1 = document.createElement('br');
+
+        this.stateInstructionsContainer.appendChild(title);
+        this.stateInstructionsContainer.appendChild(br1);
+        this.stateInstructionsContainer.appendChild(ins1);
+
         break;
     default:
         console.error('STATE OUT OF BOUNDS: ' + this.state);

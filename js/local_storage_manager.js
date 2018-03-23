@@ -52,91 +52,90 @@ LocalStorageManager.prototype.setBestScore = function (score) {
 LocalStorageManager.prototype.getGameState = function () {
     var stateJSON = this.storage.getItem(this.gameStateKey);
 
-    //return stateJSON ? JSON.parse(stateJSON) : null;
-
-    tempGRID = {
-        "grid": {
-            "size": 4,
-            "cells": [[{
-                "position": {
-                    "x": 0,
-                    "y": 0
-                },
-                "value": 2048
-            }, {
-                "position": {
-                    "x": 0,
-                    "y": 1
-                },
-                "value": 16
-            }, {
-                "position": {
-                    "x": 0,
-                    "y": 2
-                },
-                "value": 8
-            }, null], [{
-                "position": {
-                    "x": 1,
-                    "y": 0
-                },
-                "value": 1024
-            }, {
-                "position": {
-                    "x": 1,
-                    "y": 1
-                },
-                "value": 32
-            }, {
-                "position": {
-                    "x": 1,
-                    "y": 2
-                },
-                "value": 4
-            }, null], [{
-                "position": {
-                    "x": 2,
-                    "y": 0
-                },
-                "value": 512
-            }, {
-                "position": {
-                    "x": 2,
-                    "y": 1
-                },
-                "value": 64
-            }, {
-                "position": {
-                    "x": 2,
-                    "y": 2
-                },
-                "value": 2
-            }, null], [{
-                "position": {
-                    "x": 3,
-                    "y": 0
-                },
-                "value": 256
-            }, {
-                "position": {
-                    "x": 3,
-                    "y": 1
-                },
-                "value": 128
-            }, {
-                "position": {
-                    "x": 3,
-                    "y": 2
-                },
-                "value": 2
-            }, null]]
-        },
-        "score": 4,
-        "over": false,
-        "won": false,
-        "keepPlaying": false
-    }
-    return tempGRID;
+    // tempGRID = {
+    //     "grid": {
+    //         "size": 4,
+    //         "cells": [[{
+    //             "position": {
+    //                 "x": 0,
+    //                 "y": 0
+    //             },
+    //             "value": 2048
+    //         }, {
+    //             "position": {
+    //                 "x": 0,
+    //                 "y": 1
+    //             },
+    //             "value": 16
+    //         }, {
+    //             "position": {
+    //                 "x": 0,
+    //                 "y": 2
+    //             },
+    //             "value": 8
+    //         }, null], [{
+    //             "position": {
+    //                 "x": 1,
+    //                 "y": 0
+    //             },
+    //             "value": 1024
+    //         }, {
+    //             "position": {
+    //                 "x": 1,
+    //                 "y": 1
+    //             },
+    //             "value": 32
+    //         }, {
+    //             "position": {
+    //                 "x": 1,
+    //                 "y": 2
+    //             },
+    //             "value": 4
+    //         }, null], [{
+    //             "position": {
+    //                 "x": 2,
+    //                 "y": 0
+    //             },
+    //             "value": 512
+    //         }, {
+    //             "position": {
+    //                 "x": 2,
+    //                 "y": 1
+    //             },
+    //             "value": 64
+    //         }, {
+    //             "position": {
+    //                 "x": 2,
+    //                 "y": 2
+    //             },
+    //             "value": 2
+    //         }, null], [{
+    //             "position": {
+    //                 "x": 3,
+    //                 "y": 0
+    //             },
+    //             "value": 256
+    //         }, {
+    //             "position": {
+    //                 "x": 3,
+    //                 "y": 1
+    //             },
+    //             "value": 128
+    //         }, {
+    //             "position": {
+    //                 "x": 3,
+    //                 "y": 2
+    //             },
+    //             "value": 2
+    //         }, null]]
+    //     },
+    //     "score": 4,
+    //     "over": false,
+    //     "won": false,
+    //     "keepPlaying": false
+    // }
+    // return tempGRID;
+    return stateJSON ? JSON.parse(stateJSON) : null;
 };
 
 LocalStorageManager.prototype.setGameState = function (gameState) {
