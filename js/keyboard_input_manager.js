@@ -1,5 +1,6 @@
 function KeyboardInputManager() {
     this.events = {};
+    this.space_hit = false;
 
     if (window.navigator.msPointerEnabled) {
         //Internet Explorer 10 style
@@ -11,6 +12,8 @@ function KeyboardInputManager() {
         this.eventTouchmove = "touchmove";
         this.eventTouchend = "touchend";
     }
+
+
 
     this.listen();
 }
@@ -58,7 +61,17 @@ KeyboardInputManager.prototype.listen = function () {
         if (!modifiers) {
             if (mapped !== undefined) {
                 event.preventDefault();
-                self.emit("move", mapped);
+                if (this.space_hit) {
+                    if (mapped == 0) {
+                        self.emit("move", 3); // Left
+                    } else if (mapped == 2) {
+                        self.emit("move", 1); // Right
+                    } else {
+                        self.emit("move", mapped);
+                    }
+                } else {
+                    self.emit("move", mapped);
+                }
             }
         }
 
@@ -67,8 +80,9 @@ KeyboardInputManager.prototype.listen = function () {
             self.restart.call(self, event);
         }
 
-        // R key restarts the game
+        // SPACE key to change states
         if (!modifiers && event.which === 32) {
+            this.space_hit = !this.space_hit;
             self.changeState.call(self, event);
         }
     });
