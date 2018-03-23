@@ -11,14 +11,13 @@
 /**
  * Prompts and waits for the user to press ENTER.
  */
-void
-wait() {
+void wait() {
     printf( "\n" );
     printf( "Press the ENTER key...\n" );
     fflush( stdout );
     getc( stdin );
 }
-bool KeyPressed(int a){
+/*bool KeyPressed(int a){
 	if (GetAsyncKeyState(a)& 0x8000)
 	{
 		return true;
@@ -27,7 +26,7 @@ bool KeyPressed(int a){
 	{
 		return false;
 	}
-}
+}*/
 void moveLeft(INPUT ip) {
 	// Press the "left" key
 	ip.ki.wVk = 0x25; // virtual-key code for the "a" key
@@ -68,14 +67,13 @@ void moveDown(INPUT ip) {
 /**
  * Program which prints ThinkGear Raw Wave Values to stdout.
  */
-int
-main( void ) {
+int main( void ) {
     
-	//switching modes
+	/*switching modes
 	int UP_DOWN = 0;
 	int RIGHT_LEFT = 1;
 	int mode = UP_DOWN;
-	
+	*/
 	//code for keyboard input
 	INPUT ip;
 	// Set up a generic keyboard event.
@@ -84,6 +82,9 @@ main( void ) {
 	ip.ki.time = 0;
 	ip.ki.dwExtraInfo = 0;
 	// left 0x25, up 0x26, right 0x27, down 0x28
+
+	//listen for space
+	int listen = 1;
 
     char *comPortName  = NULL;
     int   dllVersion   = 0;
@@ -146,7 +147,7 @@ main( void ) {
     }
     
     /* Keep reading ThinkGear Packets from the connection for 5 seconds... */
-    secondsToRun = 5;
+    secondsToRun = 10;
     startTime = time( NULL );
     while( difftime(time(NULL), startTime) < secondsToRun ) {
         
@@ -173,7 +174,24 @@ main( void ) {
                     
                 } /* end "If Packet contained a raw wave value..." */
                 
-            } /* end "If TG_ReadPackets() was able to read a Packet..." */
+            } 
+			if (packetsRead == 2) {
+
+				/* If the Packet containted a new raw wave value... */
+				if (TG_GetValueStatus(connectionId, TG_DATA_ATTENTION) != 0) {
+
+					/* Get the current time as a string */
+					currTime = time(NULL);
+					currTimeStr = ctime(&currTime);
+
+					/* Get and print out the new raw value */
+					fprintf(stdout, "%s: raw: %d\n", currTimeStr,
+						(int)TG_GetValue(connectionId, TG_DATA_ATTENTION));
+					fflush(stdout);
+
+				} /* end "If Packet contained a raw wave value..." */
+
+			} /* end "If TG_ReadPackets() was able to read a Packet..." */
             
         } while( packetsRead > 0 ); /* Keep looping until all Packets read */
         
@@ -186,45 +204,93 @@ main( void ) {
 		packetsRead =0;
         errCode = MWM15_setFilterType(connectionId,MWM15_FILTER_TYPE_50HZ);//MWM15_FILTER_TYPE_60HZ
 		printf("MWM15_setFilterType: %d\n",errCode);
+		int THRESHOLD = 80;
+		int curr_state = 1;
+		char key_press;
+		int ascii_value;
+		char mode = 'V';
+		char direction = 'u';
+		printf("Press the SPACE key to begin...\n");
 		while(packetsRead <2000){
+
+			// TODO set space hit
+			
+			while (listen) {
+				key_press = getch();
+				ascii_value = (int)key_press;
+				if (ascii_value == 32) {
+					printf("SPACE KEY PRESSED..\n");
+					listen = 0;
+					break;
+				}
+			}
+			
+			/*if (space == 1 && curr_state == 0) {
+				curr_state++;
+				printf("PRESS SPACE TO MEDITATE, curr is %d \n", curr_state);
+				
+			}*/
+
+			if (curr_state == 1) {
+				curr_state = 2;
+				//printf("here 2");
+				//f raw value has been updated ... * /
+				if (TG_GetValueStatus(connectionId, TG_DATA_MEDITATION) != 0) {
+						int input = (int)TG_GetValue(connectionId, TG_DATA_MEDITATION);
+						/* Get and print out the updated raw value */
+						printf("m:%d ", input);
+						if (input >= THRESHOLD) {
+							moveUp(ip);
+						}
+						
+						fflush(stdout);
+						packetsRead++;
+
+						if (packetsRead == 800 || packetsRead == 1600) {// at lease 1s after MWM15_setFilterType cmd
+							set_filter_flag++;
+							errCode = MWM15_getFilterType(connectionId);
+
+							printf(" \nMWM15_getFilterType   result: %d  index: %d\n", errCode, packetsRead);
+
+						}
+
+				}
+			}
+
+			else if (curr_state == 2) {
+				curr_state = 1;
+				//f raw value has been updated ... * /
+				if (TG_GetValueStatus(connectionId, TG_DATA_ATTENTION) != 0) {
+					int input = (int)TG_GetValue(connectionId, TG_DATA_ATTENTION);
+					/* Get and print out the updated raw value */
+					printf("a:%d ", input);
+					if (input >= THRESHOLD) {
+						moveDown(ip);
+					}
+
+					fflush(stdout);
+					packetsRead++;
+
+					if (packetsRead == 800 || packetsRead == 1600) {// at lease 1s after MWM15_setFilterType cmd
+						set_filter_flag++;
+						errCode = MWM15_getFilterType(connectionId);
+
+						printf(" \nMWM15_getFilterType   result: %d  index: %d\n", errCode, packetsRead);
+
+					}
+
+				}
+			}
+
 			//pressed space bar
 			/*if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
 				printf("SPACE");
 			}*/
-			if ((1 << 15) & GetAsyncKeyState(VK_SPACE))
-			{
-				printf("SPACE");
-			}
+			
 			/*if (KeyPressed(VK_SPACE)) {
 				printf("SPACE");
-			}
-			If raw value has been updated ... */
-            if( TG_GetValueStatus(connectionId, TG_DATA_MEDITATION) != 0 ) {
-				int input = (int)TG_GetValue(connectionId, TG_DATA_MEDITATION);
-                /* Get and print out the updated raw value */
-                printf( "%d ", input);
-				if (input >= 80) {
-					moveUp(ip);
-				}
-				fflush( stdout );
-				/*if(packetsRead % 10 == 0){ // too much stdout operation will lose some data
-					int input = (int)TG_GetValue(connectionId, TG_DATA_MEDITATION);
-				printf(  " %d ", input );
-				}else{
-					TG_GetValue(connectionId, TG_DATA_MEDITATION);
-				}*/
-				packetsRead ++;
-
-	            //wait for a while to call MWM15_getFilterType
-				if(packetsRead == 800 || packetsRead == 1600  ){// at lease 1s after MWM15_setFilterType cmd
-					set_filter_flag ++;
-					errCode = MWM15_getFilterType(connectionId);
-
-					printf(  " \nMWM15_getFilterType   result: %d  index: %d\n",errCode,packetsRead );
-
-				}
-
-            }
+			}*/
+			
 
 			if(TG_GetValueStatus(connectionId, MWM15_DATA_FILTER_TYPE) != 0 ) {
 
