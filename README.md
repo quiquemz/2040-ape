@@ -1,5 +1,7 @@
 # 2040 Ape
 
+[DEMO](https://www.youtube.com/watch?v=0jWSzLDWCzo&feature=youtu.be)
+
 This is a clone of Gabriele Cirulli's 2048 game to play using the NeuroSky headset.All credit for game design goes to him.
 
 The project was created for our Brain and Computer Interface class at UCSD. The game can be played without a NeuroSky headset using the arrow keys. For the moment though, the headset only provides few signals so we decided to use a state-based system to control the game with the system. It uses Meditation and Attention levels and the system looks like this:
