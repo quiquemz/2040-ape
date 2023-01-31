@@ -23,7 +23,3 @@ The project was created for our Brain and Computer Interface class at UCSD. The 
 [Original code](https://github.com/gabrielecirulli/2048) (from Cirulli's 2048)
 
 Use governed by the MIT License.
-
-## Contributing
-
-This is an open source project and PRs are welcome and appreciated.
